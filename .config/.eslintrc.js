@@ -10,7 +10,11 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 2021,
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaFeatures: { // add ecmaFeatures
+      jsx: true,
+      modules: true
+    }
   },
   env: {
     node: true,

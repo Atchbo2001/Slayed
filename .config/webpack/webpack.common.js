@@ -18,23 +18,22 @@ module.exports = {
       '@shopify-directory': path.resolve(__dirname, '../../shopify/')
     }
   },
+  resolve: {
+    extensions: [... '.jsx'] // add jsx to extensions array
+  },
   module: {
     rules: [
+      // add babel-loader for jsx,
+      // remove the same loader from webpack.prod.js
       {
-        test: /\.vue$/,
-        loader: 'vue-loader'
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: [ '@babel/preset-env', '@babel/preset-react' ]
+        }
       },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192
-            }
-          }
-        ]
-      }
+      ...
     ]
   },
   plugins: [

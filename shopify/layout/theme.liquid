@@ -28,6 +28,8 @@
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
       {% section 'header' %}
 
+      <div react-component="MyComponent"></div>
+
       <main id="main" role="main">
         {{ content_for_layout }}
       </main>
