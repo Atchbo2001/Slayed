@@ -2,7 +2,7 @@
  * imports
  */
 
-import './css/main.css'
+import './css/main.scss'
 
 // eslint-disable-next-line
 import React from 'react'
