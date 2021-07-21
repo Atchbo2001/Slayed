@@ -1,7 +1,5 @@
 const path = require('path')
-const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   stats: 'minimal',
@@ -11,15 +9,11 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['*', '.js', '.vue', '.json'],
+    extensions: ['*', '.js', '.vue', '.json', '.jsx'],
     alias: {
-      'vue$': 'vue/dist/vue.esm-bundler.js',
       '@': path.resolve(__dirname, '../../src/'),
       '@shopify-directory': path.resolve(__dirname, '../../shopify/')
     }
-  },
-  resolve: {
-    extensions: [... '.jsx'] // add jsx to extensions array
   },
   module: {
     rules: [
@@ -32,8 +26,7 @@ module.exports = {
         options: {
           presets: [ '@babel/preset-env', '@babel/preset-react' ]
         }
-      },
-      ...
+      }
     ]
   },
   plugins: [
@@ -43,11 +36,6 @@ module.exports = {
      */
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*', '!*static*']
-    }),
-    new VueLoaderPlugin(),
-    new webpack.DefinePlugin({
-      __VUE_OPTIONS_API__: 'true',
-      __VUE_PROD_DEVTOOLS__: 'false'
     })
   ]
 }
