@@ -1,6 +1,6 @@
-<div class="{{ class | default: '' }}" style="{{ style | default: '' }}">
+<div class="flex justify-start{{ class | default: '' }}" style="{{ style | default: '' }}">
   {% for link in linklists.main-menu.links %}
-    <div>
+    <div class="mr-4 text-white">
       <a href="{{ link.url }}">
         {{ link.title | escape }}
       </a>
