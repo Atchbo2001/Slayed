@@ -18,7 +18,7 @@ reactComponents.keys().forEach(key => {
   const Component = reactComponents(key).default
 
   // transform file name to PascalCase
-  const name = key.replace(/\.(\/|jsx|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
+  const name = key.replace(/\.(\/|jsx|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase()).replace(/^[A-Za-z]/, (match) => match.toUpperCase())
 
   const domElement = document.querySelector(`[react-component='${name}']`)
   render(<Component/>, domElement)
