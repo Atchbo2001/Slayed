@@ -12,15 +12,6 @@ module.exports = merge(common, {
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: [ '@babel/preset-env' ],
-          plugins: [ '@babel/plugin-transform-runtime' ]
-        }
-      },
       ... (() => {
         const rules = []
 
