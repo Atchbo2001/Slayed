@@ -9,7 +9,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['*', '.js', '.vue', '.json', '.jsx'],
+    extensions: ['*', '.js', '.json', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, '../../src/'),
       '@shopify-directory': path.resolve(__dirname, '../../shopify/')
