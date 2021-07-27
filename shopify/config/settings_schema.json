@@ -11,12 +11,11 @@
     "name": "t:settings_schema.custom_settings.name",
     "settings": [
       {
-        "type": "header",
-        "content": "t:settings_schema.custom_settings.settings.header"
-      },
-      {
-        "type": "paragraph",
-        "content": "t:settings_schema.custom_settings.settings.paragraph"
+        "type": "color",
+        "id": "brand_color",
+        "default": "#96bf48",
+        "label": "Brand color",
+        "info": "This is an example theme settings input but can be used as-is."
       }
     ]
   }
