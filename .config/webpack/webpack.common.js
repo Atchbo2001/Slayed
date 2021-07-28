@@ -34,8 +34,8 @@ module.exports = {
      * don't clean files with the 'static' keyword in their filename
      * docs: https://github.com/johnagan/clean-webpack-plugin
      */
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!*static*']
-    })
+    // new CleanWebpackPlugin({
+    //   cleanOnceBeforeBuildPatterns: ['**/*', '!*static*']
+    // })
   ]
 }

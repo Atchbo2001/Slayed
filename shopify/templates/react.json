@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "react-demo": {
+      "type": "react-demo"
+    }
+  },
+  "order": [
+    "react-demo"
+  ]
+}
