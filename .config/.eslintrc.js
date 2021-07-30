@@ -3,11 +3,8 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:vue/vue3-recommended' // use 'plugin:vue/vue3-essential' for less strict linting rules - https://eslint.vuejs.org/rules
   ],
-  plugins: [
-    'vue'
-  ],
+  plugins: [],
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',

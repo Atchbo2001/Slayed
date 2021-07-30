@@ -7,6 +7,11 @@ import './scss/main.scss'
 // eslint-disable-next-line
 import React from 'react'
 import { render } from 'react-dom'
+import Alpine from 'alpinejs'
+
+window.Alpine = Alpine
+
+Alpine.start()
 
 /**
  * react components
