@@ -15,14 +15,14 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {{ 'bundle.css' | asset_url | stylesheet_tag }}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
 
     <!-- header hook for Shopify plugins -->
     {{ content_for_header }}
   </head>
 
   <body>
-    <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
+    <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %} class="flex">
       {% section 'header' %}
 
       {% section 'react-examples' %}

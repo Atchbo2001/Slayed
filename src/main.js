@@ -2,7 +2,8 @@
  * imports
  */
 
-import './scss/main.scss'
+import './scss/base.scss'
+import './scss/section-main-page-contact.scss'
 
 // eslint-disable-next-line
 import React from 'react'

@@ -17,7 +17,6 @@ module.exports = {
       "@shopify-directory": path.resolve(__dirname, "../../shopify/"),
     },
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -44,10 +43,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-            },
+            loader: "css-loader"
           },
           {
             loader: "postcss-loader",
@@ -65,18 +61,12 @@ module.exports = {
         test: /\.scss$/,
         exclude: ["/node_modules"],
         use: [
-          MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-            },
+            loader: 'file-loader',
+            options: { name: '[name].css'}
           },
           {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            },
+            loader: "sass-loader"
           },
         ],
       },
@@ -87,9 +77,9 @@ module.exports = {
      * don't clean files with the 'static' keyword in their filename
      * docs: https://github.com/johnagan/clean-webpack-plugin
      */
-    // new CleanWebpackPlugin({
-    //   cleanOnceBeforeBuildPatterns: ["**/*", "!*static*"],
-    // }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ["**/*", "!*static*"],
+    }),
     /**
      * docs: https://webpack.js.org/plugins/mini-css-extract-plugin
      */
