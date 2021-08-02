@@ -1,9 +1,6 @@
-/**
- * imports
- */
-
 import './scss/base.scss'
 import './scss/section-main-page-contact.scss'
+import './scss/component-minicart.scss'
 
 // eslint-disable-next-line
 import React from 'react'
@@ -11,6 +8,13 @@ import { render } from 'react-dom'
 import Alpine from 'alpinejs'
 
 window.Alpine = Alpine
+
+Alpine.store('slayed', {
+  showMinicart: false,
+  toggleMinicart() {
+    this.showMinicart = !this.showMinicart
+  }
+})
 
 Alpine.start()
 

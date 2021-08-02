@@ -1,0 +1,57 @@
+<div
+  class="slayed-minicart"
+  x-data="componentMinicart()"
+  x-show="$store.slayed.showMinicart"
+  x-transition
+>
+  <div class="minicart--item-container">
+    You have
+    <span class="minicart--item-count" style="font-weight: 600">3 items</span>
+    in your cart!
+  </div>
+  <hr />
+  <ul>
+    <template>
+      <li class="minicart--item">
+        <div class="placeholder"></div>
+        <h1 class="title">Title of Product 01</h1>
+        <p class="material">
+          <span style="font-weight: 600">Material:</span>
+          Copper
+        </p>
+        <p class="size">
+          <span style="font-weight: 600">Size:</span>
+          6 1/2
+        </p>
+        <p class="price">$90.00 USD (x1)</p>
+        <p class="remove">
+          <a href="#">
+            <i class="fa fa-trash-o"></i>
+            Remove from cart
+          </a>
+        </p>
+      </li>
+    </template>
+  </ul>
+  <hr />
+  <div class="minicart--subtotal">
+    <p class="minicart--subtotal-title">Subtotal</p>
+    <p class="minicart--subtotal-amount">$270.00 USD</p>
+  </div>
+  <input type="button" value="View Cart Details" />
+</div>
+
+<script>
+  function componentMinicart() {
+    return {
+      items: [],
+      init() {
+        fetch('/cart.js')
+          .then((response) => response.json())
+          .then((data) => {
+            console.log( data.items );
+          })
+      }
+    }
+  }
+</script>

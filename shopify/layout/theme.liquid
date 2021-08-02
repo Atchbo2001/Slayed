@@ -16,6 +16,9 @@
     {% endif %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    
+    {% section 'component-minicart' %}
+    {{ 'component-minicart.css' | asset_url | stylesheet_tag }}
 
     <!-- header hook for Shopify plugins -->
     {{ content_for_header }}

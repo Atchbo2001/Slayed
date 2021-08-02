@@ -18,9 +18,9 @@
       {% endif %}
     {% endif %}
 
-    <a href="{{ routes.cart_url }}">
+    <button type="button" x-data @click="$store.slayed.toggleMinicart()">
       {{ 'action.cart' | t }}
-    </a>
+    </button>
   </div>
 </div>
 
