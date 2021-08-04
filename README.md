@@ -1,6 +1,6 @@
 # Slayed Shopify Boilerplate (A Shopify Theme Labs Fork)
 
-This fork is not much of a departure from upstream. I have just made some opinionated additions to the project structure and shopify template that help me get going on a Shopify project.
+This fork is not much of a departure from upstream. I have just made some opinionated additions to the project structure, JS entry file, and shopify template that help me get going on a Shopify project.
 
 #### Important differences from upstream:
 - Vue.js removed.
