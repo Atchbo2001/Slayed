@@ -10,7 +10,6 @@ This fork is not much of a departure from upstream. I have just made some opinio
 
 
 ## Getting Started
----
 
 ### Install
 
@@ -31,7 +30,6 @@ $ npm run deploy
 ```
 
 ## Add React
----
 
 1. Install NPM packages
 
