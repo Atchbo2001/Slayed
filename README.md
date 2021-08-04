@@ -1,5 +1,14 @@
 # Slayed Shopify Boilerplate (A Shopify Theme Labs Fork)
 
+This fork is not much of a departure from upstream. I have just made some opinionated additions to the project structure and shopify template that help me get going on a Shopify project.
+
+#### Important differences from upstream:
+- Vue.js removed.
+- SCSS compilation installed
+- Alpine.js store and component automatic module registering with directories at `./src/alpine/stores/` and `./src/alpine/components/` respectively. 
+- A javascript helpers file with helper functions being mapped to `[namespace].helpers.[function-name]`. `[namespace]` is the project's namespace defined in `main.js`.
+
+
 ## Getting Started
 ---
 
