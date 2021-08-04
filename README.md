@@ -1,10 +1,34 @@
-# Slayed Shopify Boilerplate
+# Slayed Shopify Boilerplate (A Shopify Theme Labs Fork)
+
+## Getting Started
+---
+
+### Install
+
+```bash
+$ npm i
+```
+
+### Development
+
+```bash
+$ npm run start
+```
+
+### Deployment
+
+```bash
+$ npm run deploy
+```
 
 ## Add React
+---
 
 1. Install NPM packages
 
-`npm i react react-dom`
+```bash
+npm i react react-dom
+```
 
 2. Add component mapping logic to `src/main.js`
 
@@ -29,7 +53,6 @@ reactComponents.keys().forEach(key => {
 3. Create a react components directory and example component in the `/src/` at `/src/react/components/MyComponent.jsx`
 
 ```javascript
-
 import React from 'react'
 
 class MyComponent extends React.Component {
