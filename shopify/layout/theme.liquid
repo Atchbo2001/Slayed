@@ -29,17 +29,24 @@
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %} class="flex">
       {% section 'header' %}
 
+      <ul>
+        <template x-data x-for="[key, value] in Object.entries($store.cart.items)">
+          <li>
+            Variant ID: <span x-html="value.variant_id"></span>
+            Quantity: <span x-html="value.quantity"></span>
+          </li>
+        </template>
+      </ul>
+
       <div class="test-1" x-data>
-        <button @click="$store.cart.test()">
-          button 1 increment
+        <button @click="$store.cart.add({'id':40161362182320,'quantity':1})">
+          Add some item to cart
         </button>
       </div>
 
-      <div class="test-2" x-data>
-        <button @click="$store.cart.test()">
-          button 2 increment
-        </button>
-      </div>
+      <button type="button" x-data @click="$store.cart.clear()">
+        Clear Cart
+      </button>
 
       <main id="main" role="main">
         {{ content_for_layout }}
