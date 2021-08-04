@@ -1,46 +1,60 @@
-<!-- logo (start) -->
-<p align="center">
-  <img src="https://raw.githubusercontent.com/uicrooks/shopify-theme-lab/master/.github/img/logo.svg" width="250px">
-</p>
+# Slayed Shopify Boilerplate
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/uicrooks/shopify-theme-lab/master/.github/img/banner.svg" width="400px">
-</p>
-<!-- logo (end) -->
+## Add React
 
-<!-- badges (start) -->
-<p align="center">
-  <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff">
-  <img src="https://img.shields.io/github/package-json/dependency-version/uicrooks/shopify-theme-lab/vue?color=%234fc08d">
-  <img src="https://img.shields.io/github/package-json/dependency-version/uicrooks/shopify-theme-lab/tailwindcss?color=%2306b6d4">
-</p>
-<!-- badges (end) -->
+1. Install NPM packages
 
-<!-- title / description (start) -->
-<h2 align="center">Shopify Theme Lab</h2>
+`npm i react react-dom`
 
-Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. It is built on top of the [Shopify CLI](https://shopify.dev/themes/tools/cli) and extends it with additional workflow and building capabilities. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
+2. Add component mapping logic to `src/main.js`
 
-> If you are looking for the old Theme Lab it's here: [Legacy Version 3 branch](https://github.com/uicrooks/shopify-theme-lab/tree/legacy-v3)
-<!-- title / description (end) -->
+```javascript
+/**
+ * react components
+ * auto-map all react components to dom elements
+ */
+const reactComponents = require.context('./react/components/', true, /\.(jsx|js)$/)
 
-<!-- docs (start) -->
-## Docs
+reactComponents.keys().forEach(key => {
+  const Component = reactComponents(key).default
 
-👉 You can find the documentation [here](https://uicrooks.github.io/shopify-theme-lab-docs)
-<!-- docs (end) -->
+  // transform file name to PascalCase
+  const name = key.replace(/\.(\/|jsx|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase()).replace(/^[A-Za-z]/, (match) => match.toUpperCase())
 
-<!-- ecosystem (start) -->
-## Ecosystem
-| Project | Status | Description |
-| - | - | - |
-| [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
-| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-foundation-theme?color=%236e78ff"> | A modern Shopify starter theme built with Vue and Tailwind CSS |
-| [Shopify Theme Lab Plugins](https://github.com/uicrooks/shopify-theme-lab-plugins) | <img src="https://img.shields.io/static/v1?label=version&message=misc&color=%236e78ff"> | Official Shopify Theme Lab plugins |
-<!-- ecosystem (end) -->
+  const domElement = document.querySelector(`[react-component='${name}']`)
+  render(<Component/>, domElement)
+})
+```
 
-<!-- contributing (start) -->
-## Contributing
+3. Create a react components directory and example component in the `/src/` at `/src/react/components/MyComponent.jsx`
 
-Everyone is welcome to make Shopify theme development better! Please read the [Contributing guide](.github/CONTRIBUTING.md) before creating issues or submitting pull requests.
-<!-- contributing (end) -->
+```javascript
+
+import React from 'react'
+
+class MyComponent extends React.Component {
+  render() {
+    return(
+      <div>
+        React Component Example
+      </div>
+    )
+  }
+}
+
+export default MyComponent
+```
+
+4. Insert an HTML element with the `react-component` attribute and the exact name of your component
+```html
+<div react-component="MyComponent"></div>
+```
+
+Your rendered component markup will now look like
+```html
+<div react-component="MyComponent">
+  <div>
+    React Component Example
+  </div>
+</div>
+```
