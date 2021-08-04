@@ -1,0 +1,23 @@
+.shopify-section-main-collection {
+  &-inner {
+    padding: 90px 90px;
+
+    .grid {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+      &-item {
+        &-inner {
+
+            img {
+              width: 100%;
+            }
+
+          .content {
+          }
+        }
+      }
+    }
+  }
+}

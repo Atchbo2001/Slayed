@@ -1,5 +1,12 @@
 @import 'colors';
 
+html {
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
 body {
   background: $base-color;
+  margin: 0;
+  padding: 0;
 }

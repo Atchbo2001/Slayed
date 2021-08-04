@@ -1,0 +1,22 @@
+.shopify-section-header {
+  .container {
+    display: flex;
+    padding: 1rem;
+ 
+    button {
+      -webkit-appearance: none;
+      appearance: none;
+      -moz-appearance: none;
+      background: none;
+      border: none;
+    }
+
+    a, button {
+      color: white;
+      text-decoration: none;
+      margin-right: 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+  }
+}

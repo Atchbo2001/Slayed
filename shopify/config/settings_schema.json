@@ -11,12 +11,10 @@
     "name": "t:settings_schema.custom_settings.name",
     "settings": [
       {
-        "type": "header",
-        "content": "t:settings_schema.custom_settings.settings.header"
-      },
-      {
-        "type": "paragraph",
-        "content": "t:settings_schema.custom_settings.settings.paragraph"
+        "type": "color",
+        "id": "brand_color",
+        "label": "Brand Color",
+        "default": "#31915f"
       }
     ]
   }

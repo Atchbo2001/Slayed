@@ -1,7 +1,7 @@
 <div
   class="slayed-minicart"
-  x-data="componentMinicart()"
-  x-show="$store.slayed.showMinicart"
+  x-data="minicart"
+  x-show=""
   x-transition
 >
   <div class="minicart--item-container">
@@ -40,18 +40,3 @@
   </div>
   <input type="button" value="View Cart Details" />
 </div>
-
-<script>
-  function componentMinicart() {
-    return {
-      items: [],
-      init() {
-        fetch('/cart.js')
-          .then((response) => response.json())
-          .then((data) => {
-            console.log( data.items );
-          })
-      }
-    }
-  }
-</script>

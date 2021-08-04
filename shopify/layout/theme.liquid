@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
 
     <title>{{ page_title | escape }}</title>
@@ -16,8 +16,9 @@
     {% endif %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'header.css' | asset_url | stylesheet_tag }}
     
-    {% section 'component-minicart' %}
+    <!-- {% section 'component-minicart' %} -->
     {{ 'component-minicart.css' | asset_url | stylesheet_tag }}
 
     <!-- header hook for Shopify plugins -->
@@ -28,7 +29,17 @@
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %} class="flex">
       {% section 'header' %}
 
-      {% section 'react-examples' %}
+      <div class="test-1" x-data>
+        <button @click="$store.cart.test()">
+          button 1 increment
+        </button>
+      </div>
+
+      <div class="test-2" x-data>
+        <button @click="$store.cart.test()">
+          button 2 increment
+        </button>
+      </div>
 
       <main id="main" role="main">
         {{ content_for_layout }}

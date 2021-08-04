@@ -20,6 +20,7 @@ module.exports = {
      * add custom rules
      * docs: https://stylelint.io/user-guide/rules/list
      */
+    'block-no-empty': null,
     'at-rule-no-unknown': null,
     'no-descending-specificity': null
   }

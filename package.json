@@ -22,9 +22,7 @@
     "fix:shopify": "cd shopify && shopify theme check -a"
   },
   "dependencies": {
-    "alpinejs": "^3.2.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "alpinejs": "^3.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
