@@ -4,7 +4,7 @@ This fork is not much of a departure from upstream. I have just made some opinio
 
 #### Important differences from upstream:
 - Vue.js removed.
-- SCSS compilation installed
+- SCSS compilation installed. SCSS files that are imported into `main.js` will be compiled to individual chunks to reduce unused CSS importing into templates/pages.
 - Alpine.js store and component automatic module registering with directories at `./src/alpine/stores/` and `./src/alpine/components/` respectively. 
 - A javascript helpers file with helper functions being mapped to `[namespace].helpers.[function-name]`. `[namespace]` is the project's namespace defined in `main.js`.
 
