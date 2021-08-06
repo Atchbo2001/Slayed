@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="{{ 'favicon.static.ico' | asset_url }}">
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
@@ -38,9 +39,27 @@
         </template>
       </ul>
 
-      <div class="test-1" x-data>
+      <div class="add-item-button" x-data>
+        <button @click="$store.cart.addItem({'id':40161362182320,'quantity':1})">
+          Add Single Item to cart
+        </button>
+      </div>
+
+      <div class="add-items-button" x-data>
         <button @click="$store.cart.add({'id':40161362182320,'quantity':1})">
-          Add some item to cart
+          Add Items
+        </button>
+      </div>
+
+      <div class="update-button" x-data>
+        <button @click="$store.cart.update({40161362182320:5, 40161573109936:1})">
+          Update item to 5
+        </button>
+      </div>
+
+      <div class="get-button" x-data>
+        <button @click="$store.cart.get().then(response => console.log(response))">
+          Get Cart and Console Log
         </button>
       </div>
 

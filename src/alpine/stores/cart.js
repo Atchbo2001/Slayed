@@ -2,25 +2,40 @@ export default {
   name: 'cart',
   store() {
     return {
-      counter: 0,
       items: [],
-      add(data) {
-        fetch('/cart/add.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-          .then((response) => response.json())
-          .then((addedItemData) => {
-            // const itemExists = this.items.some(item => item.key != addedItemData.key && item.variant_id == addedItemData.variant_id)
+      addItem(item) {
+        let formData = {
+          'items': [item]
+        }
 
-            this.items[addedItemData.variant_id] = addedItemData
-          })
-          .catch((error) => {
-            console.error('Error:', error)
-          })
+        this.cartFetch(
+          '/cart/add.js',
+          'POST',
+          formData,
+          {
+            'success': (data) => {
+              this.items[data['items'][0].variant_id] = data['items'][0]
+            }
+          }
+        )
+      },
+      addItems(items) {
+        let formData = {
+          'items': items
+        }
+
+        this.cartFetch(
+          '/cart/add.js',
+          'POST',
+          formData,
+          {
+            'success': (addedItemsData) => {
+              console.log('success func ran')
+              console.log(this)
+
+            }
+          }
+        )
       },
       async get() {
         let response = await fetch('/cart.js', {
@@ -34,7 +49,25 @@ export default {
 
         return data
       },
-      update() {
+      update(updates) {
+        let data = {
+          updates: updates
+        }
+
+        fetch('/cart/update.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+          })
       },
       clear() {
         fetch('/cart/clear.js', {
@@ -45,6 +78,7 @@ export default {
         })
           .then((response) => response.json())
           .then((data) => {
+            console.log(data)
             if (data.item_count === 0) {
               this.items = []
             }
@@ -52,6 +86,47 @@ export default {
           .catch((error) => {
             console.error('Error:', error)
           })
+      },
+      cartFetch(endpoint, method = 'GET', data = {}) {
+        let success = () => {}
+        let error = (error) => {
+          console.error('An error occurred: ' + error)
+        }
+
+        for (var i = 0; i < arguments.length; ++i) {
+          var arg = arguments[i];
+      
+          if (arg.hasOwnProperty('success')) {
+            success = arg['success']
+          } else if (arg.hasOwnProperty('error')) {
+            error = arg['error']
+          }
+        }
+
+        let fetchData = {
+          method: method,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+
+        
+        if (Object.keys(data).length !== 0) {
+          fetchData['body'] = JSON.stringify(data)
+        }
+
+        console.log(fetchData)
+
+        fetch(endpoint, fetchData)
+          .then((response) => {
+            if (response.ok) {
+              return response.json()
+            } else {
+              console.error('An error occured while interacting with the Shopify Cart API.')
+            }
+          })
+          .then(success)
+          .catch(error)
       }
     }
   }
