@@ -3,6 +3,22 @@ export default {
   store() {
     return {
       items: [],
+      initialize(cart) {
+        this.syncItems(cart.items)
+      },
+      fetchConfig(type = 'json') {
+        return {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': `application/${type}` }
+        };
+      },
+      syncItems(returnedItems) {
+        returnedItems.forEach((element, index) => {
+          this.items[element.variant_id] = element
+        })
+
+        console.log(this.items)
+      },
       addItem(item) {
         let formData = {
           'items': [item]
@@ -14,7 +30,7 @@ export default {
           formData,
           {
             'success': (data) => {
-              this.items[data['items'][0].variant_id] = data['items'][0]
+              console.log(data)
             }
           }
         )
@@ -29,10 +45,9 @@ export default {
           'POST',
           formData,
           {
-            'success': (addedItemsData) => {
+            'success': (data) => {
               console.log('success func ran')
-              console.log(this)
-
+              console.log(data)
             }
           }
         )
@@ -49,25 +64,24 @@ export default {
 
         return data
       },
-      update(updates) {
-        let data = {
-          updates: updates
+      updateQuantity(variant_id, qty) {
+        let formData = {
+          'id': variant_id.toString(),
+          'quantity': qty.toString()
         }
 
-        fetch('/cart/update.js', {
+        fetch('/cart/change.js', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(formData)
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data)
-          })
-          .catch((error) => {
-            console.error('Error:', error)
-          })
+        .then(response => response.json())
+        .then(item => {
+          console.log(this.items)
+          conerr
+        })
       },
       clear() {
         fetch('/cart/clear.js', {
@@ -103,28 +117,19 @@ export default {
           }
         }
 
-        let fetchData = {
+        let fetchConfig = {
           method: method,
           headers: {
             'Content-Type': 'application/json'
           }
         }
 
-        
         if (Object.keys(data).length !== 0) {
-          fetchData['body'] = JSON.stringify(data)
+          fetchConfig['body'] = JSON.stringify(data)
         }
 
-        console.log(fetchData)
-
-        fetch(endpoint, fetchData)
-          .then((response) => {
-            if (response.ok) {
-              return response.json()
-            } else {
-              console.error('An error occured while interacting with the Shopify Cart API.')
-            }
-          })
+        fetch(endpoint, fetchConfig)
+          .then((response) => response.json())
           .then(success)
           .catch(error)
       }
