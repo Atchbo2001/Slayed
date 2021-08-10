@@ -1,0 +1,50 @@
+
+      <ul>
+        <template x-data x-for="item in $store.cart.cart.items">
+          <li>
+            Variant ID: <span x-text="item.variant_id"></span>
+            Quantity: <span x-text="item.quantity"></span>
+          </li>
+        </template>
+      </ul>
+
+      <div class="add-item-button" x-data>
+        <button @click="$store.cart.addItem(40161573044400,1)">
+          Add Kimono Item to cart
+        </button>
+      </div>
+
+      <div class="add-item-button" x-data>
+        <button @click="$store.cart.addItem(40161277149360,1)">
+          Add a-line Item to cart
+        </button>
+      </div>
+
+      <div class="update-button" x-data>
+        <button @click="$store.cart.updateQuantity(40161573044400,3)">
+          Update quantity to 3
+        </button>
+      </div>
+
+      <div class="update-button" x-data>
+        <button @click="$store.cart.updateQuantity(40161573044400,0)">
+          Update quantity to 0
+        </button>
+      </div>
+
+      <div class="add-items-button" x-data>
+        <button @click="$store.cart.add({'id':40161362182320,'quantity':1})">
+          Add Items
+        </button>
+      </div>
+
+
+      <div class="get-button" x-data>
+        <button @click="$store.cart.get().then(response => console.log(response))">
+          Get Cart and Console Log
+        </button>
+      </div>
+
+      <button type="button" x-data @click="$store.cart.clear()">
+        Clear Cart
+      </button>

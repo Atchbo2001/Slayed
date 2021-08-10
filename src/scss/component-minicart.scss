@@ -26,6 +26,21 @@
 		margin-bottom: 20px;
 	}
 
+  .title-row {
+    display: flex;
+    align-items: start;
+
+    h1 {
+      margin-top: 0;
+      margin-left: 10px;
+    }
+  }
+
+  .minicart-items-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
   .minicart--item-container {
     margin-bottom: 10px;
     font-size: 0.8em;
@@ -35,33 +50,65 @@
     }
   }
   .minicart--item {
+    display: flex;
     margin-bottom: 10px;
     width: 100%;
-    float: left;
     >* {
       margin-bottom: 5px;
     }
+
+    .product-thumb-wrapper {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      flex: 0 0 100px;
+
+      img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .item-details {
+      margin-left: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      p {
+        margin: 0;
+      }
+
+      .option-label {
+        font-weight: 600;
+      }
+      .title {
+        font-size: 1em;
+        font-weight: 600;
+        margin-top: 0px;
+        margin-bottom: 5px;
+      }
+      .option {
+        margin: 0;
+        font-size: .8rem;
+      }
+
+      .price {
+        margin-top: 5px;
+      }
+      .remove {
+        font-size: 0.6em;
+        margin-top: auto;
+      }
+    }
   
-    .option-label {
-      font-weight: 600;
-    }
-    .title {
-      font-size: 1.2em;
-      font-weight: 600;
-    }
-    .material {
-      font-size: 0.8em;
-    }
-    .size {
-      font-size: 0.8em;
-      margin-bottom: 10px;
-    }
-    .price {
-      margin-bottom: 10px;
-    }
-    .remove {
-      font-size: 0.6em;
-    }
   }
   .minicart--subtotal {
     margin: 20px 0;

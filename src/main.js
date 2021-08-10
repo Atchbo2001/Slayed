@@ -21,7 +21,7 @@ for (const [key, value] of Object.entries(helpers)) {
   window[namespace].helpers[key] = value
 }
 
-// Construct Alpine stores
+// Register Alpine stores
 const alpineStores = require.context('./alpine/stores/', true, /\.js$/)
 
 alpineStores.keys().forEach((key) => {
@@ -32,17 +32,29 @@ alpineStores.keys().forEach((key) => {
   Alpine.store(name, store.store())
 })
 
-// Map Alpine componentw
-
+// Register Alpine componentw
 const alpineComponents = require.context('./alpine/components/', true, /\.js$/)
 
 alpineComponents.keys().forEach((key) => {
   const component = alpineComponents(key).default
 
-  // Component name will be named exactly as entered as property in component module
+  // Component name will be named exactly as defined in the module
   const name = component.name
 
   Alpine.data(name, component.component)
+})
+
+// Register Alpine Magic Properties
+
+const alpineMagic = require.context('./alpine/magic/', true, /\.js$/)
+
+alpineMagic.keys().forEach((key) => {
+  const magic = alpineMagic(key).default
+
+  // Magic name will be named exactly as defined in the module
+  const name = magic.name
+
+  Alpine.magic(name, magic.callback)
 })
 
 Alpine.start()

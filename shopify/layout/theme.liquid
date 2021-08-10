@@ -10,6 +10,8 @@
     <link rel="preload" href="{{ 'base.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
 
+    {{ 'component-minicart.css' | asset_url | | stylesheet_tag }}
+
     <title>{{ page_title | escape }}</title>
 
     {% if page_description %}
@@ -27,42 +29,9 @@
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %} class="flex">
       {% section 'header' %}
 
-      <ul>
-        <template x-data x-for="[key, value] in Object.entries($store.cart.items)">
-          <li>
-            Variant ID: <span x-html="value.variant_id"></span>
-            Quantity: <span x-html="value.quantity"></span>
-          </li>
-        </template>
-      </ul>
+      {% section 'component-minicart' %}
 
-      <div class="add-item-button" x-data>
-        <button @click="$store.cart.addItem({'id':40161362182320,'quantity':1})">
-          Add Single Item to cart
-        </button>
-      </div>
-
-      <div class="add-items-button" x-data>
-        <button @click="$store.cart.add({'id':40161362182320,'quantity':1})">
-          Add Items
-        </button>
-      </div>
-
-      <div class="update-button" x-data>
-        <button @click="$store.cart.updateQuantity(40161362182320,6)">
-          Update quantity to 6
-        </button>
-      </div>
-
-      <div class="get-button" x-data>
-        <button @click="$store.cart.get().then(response => console.log(response))">
-          Get Cart and Console Log
-        </button>
-      </div>
-
-      <button type="button" x-data @click="$store.cart.clear()">
-        Clear Cart
-      </button>
+      <span x-data x-text="$money(10000)"></span>
 
       <main id="main" role="main">
         {{ content_for_layout }}
