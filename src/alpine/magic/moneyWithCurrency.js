@@ -1,5 +1,5 @@
 export default {
-  name: 'money',
+  name: 'moneyWithCurrency',
   callback: (el, { Alpine }) => {
     return  (cents, format) => {
       if (typeof cents == 'string') { cents = cents.replace('.',''); }

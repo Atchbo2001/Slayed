@@ -5,9 +5,13 @@ export default {
       cart: {
         items: []
       },
+      minicartIsVisible: false,
+      toggleMinicart() { 
+        this.minicartIsVisible = !this.minicartIsVisible
+      }, 
       initialize(cart) {
-        console.log(this.cart.items.length)
         this.cart = cart
+        console.log(cart)
       },
       get subTotal() {
         const reducer = (acc, item) => {
@@ -52,8 +56,6 @@ export default {
         })
         .then(response => response.json())
         .then(data => {          
-          console.log(data)
-
           let items = data.items
           let matchFound = false
 
@@ -67,7 +69,8 @@ export default {
           }
 
           if (!matchFound) {
-            this.cart.items.push(items[0])
+            // Item not yet present in Alpine cart. Add item to beginning of array.
+            this.cart.items.unshift(items[0])
           }
         })
       },
@@ -87,6 +90,7 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.cart.items = data.items
+          console.log(data)
         })
       }
     }

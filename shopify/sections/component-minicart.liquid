@@ -1,27 +1,40 @@
-<div
-  class="slayed-minicart"
->
-  <div class="minicart--item-container">
+<div class="minicart" x-data x-transition x-show="$store.cart.minicartIsVisible" x-cloak>
+  <div class="item-count-message">
     You have
-    <span class="minicart--item-count" style="font-weight: 600" x-data x-text="$store.cart.cart.items.length"></span>
-    <span x-data x-text="$store.cart.cart.items.length > 1 ? 'items' : 'item'"></span> in your cart!
+    <span
+      class="count"
+      style="font-weight: 600"
+      x-data
+      x-text="$store.cart.cart.items.length"
+    ></span>
+    <span
+      x-data
+      x-text="$store.cart.cart.items.length > 1 ? 'items' : 'item'"
+    ></span>
+    in your cart!
   </div>
   <hr />
-  <ul class="minicart-items-list">
+  <ul class="items-list">
     <template x-data x-for="item in $store.cart.cart.items">
-      <li class="minicart--item">
+      <li class="item">
         <div class="product-thumb-wrapper">
-          <img class="product-thumb" :src="item.image" alt="item.title">
+          <img class="product-thumb" :src="item.image" alt="item.title" />
         </div>
         <div class="item-details">
-          <h1 class="title" x-text="$store.cart.truncateLongTitle(item.title)"></h1>
+          <h1
+            class="title"
+            x-text="$store.cart.truncateLongTitle(item.title)"
+          ></h1>
           <template x-for="option in item.options_with_values">
             <p class="option" :data-option-name="option.name">
               <span style="font-weight: 600" x-text="option.name + ':'"></span>
               <span x-text="option.value"></span>
             </p>
           </template>
-          <p class="price" x-text="$money(item.price)"></p>
+          <p
+            class="price"
+            x-text="$moneyWithCurrency(item.price) + ' (x' + item.quantity + ')'"
+          ></p>
           <p class="remove">
             <a href="#" @click="$store.cart.updateQuantity(item.variant_id, 0)">
               <i class="fa fa-trash-o"></i>
@@ -33,9 +46,9 @@
     </template>
   </ul>
   <hr />
-  <div class="minicart--subtotal">
-    <p class="minicart--subtotal-title">Subtotal</p>
-    <p class="minicart--subtotal-amount" x-data x-text="$money($store.cart.subTotal)"></p>
+  <div class="subtotal">
+    <p class="title">Subtotal</p>
+    <p class="amount" x-data x-text="$moneyWithCurrency($store.cart.subTotal)"></p>
   </div>
   <input type="button" value="View Cart Details" />
 </div>

@@ -21,6 +21,9 @@
     <a href="/cart" >
       {{ 'templates.cart.cart' | t }}
     </a>
+    <button type="button" x-data @click="$store.cart.toggleMinicart()">
+      Minicart
+    </button>
   </div>
 </div>
 
