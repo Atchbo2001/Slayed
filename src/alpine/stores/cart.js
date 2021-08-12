@@ -11,7 +11,6 @@ export default {
       }, 
       initialize(cart) {
         this.cart = cart
-        console.log(cart)
       },
       get subTotal() {
         const reducer = (acc, item) => {
@@ -90,7 +89,6 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.cart.items = data.items
-          console.log(data)
         })
       }
     }

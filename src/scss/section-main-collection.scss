@@ -1,6 +1,13 @@
+@import 'vars';
+@import 'mixins';
+
 .shopify-section-main-collection {
   &-inner {
-    padding: 90px 90px;
+    padding: 15px;
+
+    @include sm {
+      padding: 90px 90px;
+    }
 
     .grid {
       display: grid;
@@ -9,10 +16,9 @@
 
       &-item {
         &-inner {
-
-            img {
-              width: 100%;
-            }
+          img {
+            width: 100%;
+          }
 
           .content {
           }
