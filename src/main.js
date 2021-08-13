@@ -7,6 +7,7 @@ import './scss/component-minicart.scss'
 import './scss/section-main-collection.scss'
 import './scss/header.scss'
 import './scss/section-main-cart.scss'
+import './scss/section-main-product.scss'
 
 window.Alpine = Alpine
 

@@ -1,0 +1,26 @@
+{% schema %}
+  {
+    "name": "product",
+    "class": "shopify-section-main-product",
+    "tag": "section",
+    "settings": [
+       
+    ]
+  }
+{% endschema %}
+
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+
+<div class="shopify-section-main-product-inner main-container">
+  <h1>{{ product.title }}</h1>
+  <div class="product-detail-row">
+    <div class="image-wrapper">
+      <img src="{{ product.featured_image | img_url: 'master' }}" alt="">
+    </div>
+    <div>
+      <p>{{ product.description }}</p>
+      <br>
+      <span>{{ product.price | money_without_trailing_zeros }}</span>
+    </div>
+  </div>
+</div>

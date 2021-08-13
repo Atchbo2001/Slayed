@@ -57,19 +57,23 @@ export default {
         .then(data => {          
           let items = data.items
           let matchFound = false
-
-          for (let i = 0; i < items.length; i++) {
-            for (let j = 0; j < this.cart.items.length; j++) {
-              if (items[i].variant_id === this.cart.items[j].variant_id) {
-                matchFound = true
-                this.cart.items[j] = items[i]
+ 
+          if (!data.status) {
+            for (let i = 0; i < items.length; i++) {
+              for (let j = 0; j < this.cart.items.length; j++) {
+                if (items[i].variant_id === this.cart.items[j].variant_id) {
+                  matchFound = true
+                  this.cart.items[j] = items[i]
+                }
               }
             }
-          }
 
-          if (!matchFound) {
-            // Item not yet present in Alpine cart. Add item to beginning of array.
-            this.cart.items.unshift(items[0])
+            if (!matchFound) {
+              // Item not yet present in Alpine cart. Add item to beginning of array.
+              this.cart.items.unshift(items[0])
+            }
+          } else {
+            console.error(data.message + ': ' + data.description)
           }
         })
       },

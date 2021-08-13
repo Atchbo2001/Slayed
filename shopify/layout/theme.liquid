@@ -30,7 +30,7 @@
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %} class="flex">
       {% section 'header' %}
 
-      {% section 'component-minicart' %}
+      {% render 'component-minicart' %}
 
       <main id="main" role="main">
         {{ content_for_layout }}

@@ -22,6 +22,7 @@ module.exports = {
      */
     'block-no-empty': null,
     'at-rule-no-unknown': null,
-    'no-descending-specificity': null
+    'no-descending-specificity': null,
+    'no-duplicate-selectors': null
   }
 }

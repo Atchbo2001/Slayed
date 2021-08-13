@@ -1,6 +1,7 @@
 {% schema %}
 {
-  "class": "shopify-section-main-collection"
+  "class": "shopify-section-main-collection",
+  "tag": "section"
 }
 {% endschema %}
 
@@ -16,13 +17,20 @@
             <div class="grid-item-inner">
               <img src="{{ prod.featured_image | img_url: '740x' }}" alt="{{ prod.title }}">
               <div class="content">
-                <h3 class="h3 dark">{{ prod.title }}</h3>
+                <a href="{{ prod.url }}">
+                  <h3 class="h3 dark">{{ prod.title }}</h3>
+                </a>
                 <p class="simba-body">
-                  <span class="compare-at-price">{{ prod.compare_at_price_max | money }}</span>&nbsp;{{ prod.price | money }}</p>
+                  {% if prod.compare_at_price_max != 0 %}
+                    <span class="compare-at-price">{{ prod.compare_at_price_max | money }}</span>
+                    &nbsp;
+                    {% endif %}
+                    
+                    {{ prod.price | money }}</p>
               </div>
             </div>
             <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
-            <button type="button">
+            <button type="button" x-data @click="$store.cart.addItem({{ prod.selected_or_first_available_variant.id }}, 1)">
               Add to cart
             </button>
           </div>

@@ -1,4 +1,22 @@
-<div class="minicart" x-data x-transition x-show="$store.cart.minicartIsVisible" x-cloak>
+<div
+  class="minicart"
+  x-data
+  x-transition
+  x-show="$store.cart.minicartIsVisible"
+  x-cloak
+  role="dialog"
+  aria-labelledby="minicart-label"
+  aria-modal="true"
+  :aria-hidden="$store.cart.minicartIsVisible ? 'false' : 'true'"
+>
+  <div class="title-row">
+    <h2 id="minicart-label"> 
+      Cart
+    </h2>
+    <button @click="$store.cart.minicartIsVisible = false"> 
+      {% render 'icon-close-x' %}
+    </button>
+  </div>
   <div class="item-count-message">
     You have
     <span
@@ -48,7 +66,11 @@
   <hr />
   <div class="subtotal">
     <p class="title">Subtotal</p>
-    <p class="amount" x-data x-text="$moneyWithCurrency($store.cart.subTotal)"></p>
+    <p
+      class="amount"
+      x-data
+      x-text="$moneyWithCurrency($store.cart.subTotal)"
+    ></p>
   </div>
   <input type="button" value="View Cart Details" />
 </div>
