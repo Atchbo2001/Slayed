@@ -15,7 +15,7 @@
   <h1>{{ product.title }}</h1>
   <div class="product-detail-row">
     <div class="image-wrapper">
-      <img src="{{ product.featured_image | img_url: 'master' }}" alt="">
+      {% render 'image-srcset', image: product:featured_image %}
     </div>
     <div>
       <p>{{ product.description }}</p>
