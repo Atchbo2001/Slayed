@@ -23,6 +23,7 @@ module.exports = {
     'block-no-empty': null,
     'at-rule-no-unknown': null,
     'no-descending-specificity': null,
-    'no-duplicate-selectors': null
+    'no-duplicate-selectors': null,
+    'font-family-no-missing-generic-family-keyword': null
   }
 }

@@ -11,16 +11,64 @@
 
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 
-<div class="shopify-section-main-product-inner main-container">
-  <h1>{{ product.title }}</h1>
-  <div class="product-detail-row">
-    <div class="image-wrapper">
-      {% render 'image-srcset', image: product:featured_image %}
+<div class="shopify-section-main-product-inner main-container" data-handle="{{ product.handle }}" data-id="{{ product.id }}">
+  <div class="flex">
+    <div class="media">
+      <div class="image-wrapper" style="padding-top: 137%;">
+        {% render 'image-srcset', image: product.featured_image %}
+      </div>
     </div>
-    <div>
-      <p>{{ product.description }}</p>
-      <br>
-      <span>{{ product.price | money_without_trailing_zeros }}</span>
+    <div class="info">
+      <p class="caption">{{ product.type | upcase }}</p>
+      <h1>{{ product.title }}</h1>
+      <dl>
+        <dt class="visually-hidden">Regular Price</dt>
+        <dd>{{ product.price | money }}</dd>
+      </dl>
+
+      {% if product.options.size > 0 %}
+        <div class="variants">
+          {% for option in product.options_with_values %}
+            <fieldset>
+              <legend for="">{{ option.name }}</legend>
+              {% for value in option.values %}
+                <input id="{{ option.name }}-{{ value }}" class="visually-hidden" type="radio" value="0" name="{{ option.name }}" {% if option.selected_value == value %}checked{% endif %}>
+                <label for="{{ option.name }}-{{ value }}">{{ value }}</label>
+              {% endfor %}
+            </fieldset>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="quantity-row">
+        <label for="quantity-control-input">Quantity</label>
+        <div class="quantity-control-container">
+          <button onclick="qtyInput.value = qtyInput.value - 1">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor">
+              </path>
+            </svg>
+          </button>
+          <input type="number" id="quantity-control-input" value="1">
+          <button onclick="qtyInput.value = parseInt(qtyInput.value) + 1">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <form action="/cart/add" method="POST">
+        <button>
+          Add to cart
+        </button>
+        <button class="inverted">
+          Buy it now
+        </button>
+      </form>
+      <div class="description rte">
+        {{ product.description }}
+      </div>
     </div>
   </div>
 </div>
