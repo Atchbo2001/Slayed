@@ -10,6 +10,7 @@
 {% endschema %}
 
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-btn.css' | asset_url | stylesheet_tag }}
 
 <div class="shopify-section-main-product-inner main-container" data-handle="{{ product.handle }}" data-id="{{ product.id }}">
   <div class="flex">
@@ -22,7 +23,7 @@
       <p class="caption">{{ product.type | upcase }}</p>
       <h1>{{ product.title }}</h1>
       <dl>
-        <dt class="visually-hidden">Regular Price</dt>
+        <dt class="visually-hidden">Regular Price</dt> 
         <dd>{{ product.price | money }}</dd>
       </dl>
 
@@ -59,10 +60,10 @@
         </div>
       </div>
       <form action="/cart/add" method="POST">
-        <button>
+        <button class="btn">
           Add to cart
         </button>
-        <button class="inverted">
+        <button class="btn inverted">
           Buy it now
         </button>
       </form>

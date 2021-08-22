@@ -3,15 +3,24 @@
   "name": "Cart Section",
   "class": "shopify-section-main-cart",
   "tag": "section",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "summary-message",
+      "label": "Cart Summary Message",
+      "default": "Taxes and shipping calculated at checkout"
+    }
+  ]
 }
 {% endschema %}
 
 {{ 'section-main-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-btn.css' | asset_url | stylesheet_tag }}
 
 <div class="shopify-section-main-cart-inner main-container">
 
-  <form action="{{ routes.cart_url }}" method="POST">
+{% if cart.item_count > 0 %}
+  <form action="{{ routes.cart_url }}" method="POST" id="cart">
     <table style="width:100%">
       <tr style="text-align: left;">
         <th>Product</th>
@@ -41,4 +50,21 @@
       {% endfor %}
     </table>
   </form>
+
+  <div class="cart-summary-row">
+    <div class="totals">
+      <h3>Subtotal</h3>
+      <p>{{ cart.original_total_price | money }}</p>
+    </div>
+    <small>{{ section.settings.summary-message }}</small>
+    <button class="btn inverted" type="submit" name="checkout" form="cart">
+      {{ 'sections.cart.checkout' | t }}
+    </button>
+  </div>
+{% else %}
+
+  <h2>You have no items in your cart.</h2>
+
+{% endif %}
+
 </div>
