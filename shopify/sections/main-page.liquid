@@ -1,2 +1,21 @@
+{% schema %}
+  {
+    "name": "page",
+    "class": "shopify-section-main-page",
+    "tag": "section",
+    "settings": [
+       {
+         "type": "image_picker", 
+         "id": "featured_image_esc",
+         "label": "Featured Image"
+       }
+    ]
+  }
+{% endschema %}
+
+<div class="shopify-section-main-page-inner">
+  
+</div>
+
 <h1>{{ page.title }}</h1>
 <div>{{ page.content }}</div>

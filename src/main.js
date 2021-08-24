@@ -9,6 +9,7 @@ import './scss/section-main-collection.scss'
 import './scss/header.scss'
 import './scss/section-main-cart.scss'
 import './scss/section-main-product.scss'
+import './scss/section-main-search.scss'
 
 window.Alpine = Alpine
 

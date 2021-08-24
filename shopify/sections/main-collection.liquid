@@ -10,30 +10,10 @@
 <div class="shopify-section-main-collection-inner main-container">
   <h1 class="h1 dark">{{ collection.title }}</h1>
   <div class="grid-wrapper">
-    <div class="grid">
+    <div class="product-grid">
       {%- paginate collection.products by 12 -%}
         {% for prod in collection.products %}
-          <div class="grid-item">
-            <div class="grid-item-inner">
-              <img src="{{ prod.featured_image | img_url: '740x' }}" alt="{{ prod.title }}">
-              <div class="content">
-                <a href="{{ prod.url }}">
-                  <h3 class="h3 dark">{{ prod.title }}</h3>
-                </a>
-                <p class="simba-body">
-                  {% if prod.compare_at_price_max != 0 %}
-                    <span class="compare-at-price">{{ prod.compare_at_price_max | money }}</span>
-                    &nbsp;
-                    {% endif %}
-                    
-                    {{ prod.price | money }}</p>
-              </div>
-            </div>
-            <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
-            <button type="button" x-data @click="$store.cart.addItem({{ prod.selected_or_first_available_variant.id }}, 1)">
-              Add to cart
-            </button>
-          </div>
+          {% render 'product-grid-item', product: prod %}
         {% endfor %}
       </div>
     </div>

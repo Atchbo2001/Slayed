@@ -9,20 +9,20 @@
       padding: 90px 90px;
     }
 
-    .grid {
+    .product-grid {
       display: grid;
       grid-gap: 1rem;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 
-      &-item {
-        &-inner {
-          img {
-            width: 100%;
-          }
+    .pagination-nav {
+      margin-top: 40px;
 
-          .content {
-          }
-        }
+      .pagination {
+        display: flex;
+        gap: 10px;
+        margin: auto;
+        max-width: max-content; 
       }
     }
   }
